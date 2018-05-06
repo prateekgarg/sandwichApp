@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -30,6 +32,18 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.ingredients_tv)
     TextView ingredientsTv;
 
+    @BindView(R.id.place_of_origin_label_tv)
+    TextView placeOfOriginLabelTv;
+
+    @BindView(R.id.also_known_as_label_tv)
+    TextView alsoKnownAsLabelTv;
+
+    @BindView(R.id.description_label_tv)
+    TextView descriptionLabelTv;
+
+    @BindView(R.id.ingredients_label_tv)
+    TextView ingredientsLabelTv;
+
     @BindView(R.id.image_iv)
     ImageView ingredientsIv;
 
@@ -39,7 +53,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        //ImageView ingredientsIv = findViewById(R.id.image_iv);
+        ButterKnife.bind(this);
+        sandwich = new Sandwich();
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -76,9 +91,46 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI() {
-        originTv.setText(sandwich.getPlaceOfOrigin());
-        alsoKnownTv.setText(sandwich.getAlsoKnownAs());
-        descriptionTv.setText(sandwich.getDescription());
-        ingredientsTv.setText(sandwich.getIngredients());
+        //Add a string arg to help in debugging
+        String argumentToTest = sandwich.getPlaceOfOrigin();
+        if (!argumentToTest.equals("")) {
+            originTv.setVisibility(View.VISIBLE);
+            placeOfOriginLabelTv.setVisibility(View.VISIBLE);
+            originTv.setText(argumentToTest);
+        } else {
+            originTv.setVisibility(View.GONE);
+            placeOfOriginLabelTv.setVisibility(View.GONE);
+        }
+
+        argumentToTest = sandwich.getAlsoKnownAs();
+        if (!argumentToTest.equals("")) {
+            alsoKnownTv.setVisibility(View.VISIBLE);
+            alsoKnownAsLabelTv.setVisibility(View.VISIBLE);
+            alsoKnownTv.setText(argumentToTest);
+        } else {
+            alsoKnownTv.setVisibility(View.GONE);
+            alsoKnownAsLabelTv.setVisibility(View.GONE);
+        }
+
+        argumentToTest = sandwich.getDescription();
+        if (!argumentToTest.equals("")) {
+            descriptionTv.setVisibility(View.VISIBLE);
+            descriptionLabelTv.setVisibility(View.VISIBLE);
+            descriptionTv.setText(argumentToTest);
+        } else {
+            descriptionTv.setVisibility(View.GONE);
+            descriptionLabelTv.setVisibility(View.GONE);
+        }
+
+        argumentToTest = sandwich.getIngredients();
+
+        if (!argumentToTest.equals("")) {
+            ingredientsTv.setVisibility(View.VISIBLE);
+            ingredientsLabelTv.setVisibility(View.VISIBLE);
+            ingredientsTv.setText(argumentToTest);
+        } else {
+            ingredientsTv.setVisibility(View.GONE);
+            ingredientsLabelTv.setVisibility(View.GONE);
+        }
     }
 }
