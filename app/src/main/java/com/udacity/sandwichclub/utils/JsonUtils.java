@@ -28,7 +28,7 @@ public class JsonUtils {
             JSONArray alsoKnownAsArray = name.getJSONArray("alsoKnownAs");
             List<String> alsoKnownAsStringList = new ArrayList<>();
             for (int i = 0; i < alsoKnownAsArray.length(); i++) {
-                alsoKnownAsStringList.add(alsoKnownAsArray.getJSONObject(i).toString());
+                alsoKnownAsStringList.add(alsoKnownAsArray.getString(i));
             }
             sandwich.setAlsoKnownAs(alsoKnownAsStringList);
 
