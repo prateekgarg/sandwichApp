@@ -3,7 +3,6 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,44 +92,49 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI() {
         //Add a string arg to help in debugging
         String argumentToTest = sandwich.getPlaceOfOrigin();
+        String emptyArgumentPlaceholder = "Message not available";
         if (!argumentToTest.equals("")) {
-            originTv.setVisibility(View.VISIBLE);
-            placeOfOriginLabelTv.setVisibility(View.VISIBLE);
+//            originTv.setVisibility(View.VISIBLE);
+//            placeOfOriginLabelTv.setVisibility(View.VISIBLE);
             originTv.setText(argumentToTest);
         } else {
-            originTv.setVisibility(View.GONE);
-            placeOfOriginLabelTv.setVisibility(View.GONE);
+//            originTv.setVisibility(View.GONE);
+//            placeOfOriginLabelTv.setVisibility(View.GONE);
+            originTv.setText(emptyArgumentPlaceholder);
         }
 
         argumentToTest = sandwich.getAlsoKnownAs();
         if (!argumentToTest.equals("")) {
-            alsoKnownTv.setVisibility(View.VISIBLE);
-            alsoKnownAsLabelTv.setVisibility(View.VISIBLE);
+//            alsoKnownTv.setVisibility(View.VISIBLE);
+//            alsoKnownAsLabelTv.setVisibility(View.VISIBLE);
             alsoKnownTv.setText(argumentToTest);
         } else {
-            alsoKnownTv.setVisibility(View.GONE);
-            alsoKnownAsLabelTv.setVisibility(View.GONE);
+//            alsoKnownTv.setVisibility(View.GONE);
+//            alsoKnownAsLabelTv.setVisibility(View.GONE);
+            alsoKnownTv.setText(emptyArgumentPlaceholder);
         }
 
         argumentToTest = sandwich.getDescription();
         if (!argumentToTest.equals("")) {
-            descriptionTv.setVisibility(View.VISIBLE);
-            descriptionLabelTv.setVisibility(View.VISIBLE);
+//            descriptionTv.setVisibility(View.VISIBLE);
+//            descriptionLabelTv.setVisibility(View.VISIBLE);
             descriptionTv.setText(argumentToTest);
         } else {
-            descriptionTv.setVisibility(View.GONE);
-            descriptionLabelTv.setVisibility(View.GONE);
+//            descriptionTv.setVisibility(View.GONE);
+//            descriptionLabelTv.setVisibility(View.GONE);
+            descriptionTv.setText(emptyArgumentPlaceholder);
         }
 
         argumentToTest = sandwich.getIngredients();
 
         if (!argumentToTest.equals("")) {
-            ingredientsTv.setVisibility(View.VISIBLE);
-            ingredientsLabelTv.setVisibility(View.VISIBLE);
+//            ingredientsTv.setVisibility(View.VISIBLE);
+//            ingredientsLabelTv.setVisibility(View.VISIBLE);
             ingredientsTv.setText(argumentToTest);
         } else {
-            ingredientsTv.setVisibility(View.GONE);
-            ingredientsLabelTv.setVisibility(View.GONE);
+//            ingredientsTv.setVisibility(View.GONE);
+//            ingredientsLabelTv.setVisibility(View.GONE);
+            ingredientsTv.setText(emptyArgumentPlaceholder);
         }
     }
 }

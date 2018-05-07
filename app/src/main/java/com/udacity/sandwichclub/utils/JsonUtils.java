@@ -1,8 +1,5 @@
 package com.udacity.sandwichclub.utils;
 
-import android.content.Context;
-
-import com.udacity.sandwichclub.R;
 import com.udacity.sandwichclub.model.Sandwich;
 
 import org.json.JSONArray;
@@ -19,33 +16,26 @@ public class JsonUtils {
         try {
             JSONObject jsonObject = new JSONObject(json);
 
-            Sandwich sandwich = new Sandwich();
-
             JSONObject name = jsonObject.getJSONObject("name");
-            sandwich.setMainName(name.getString("mainName"));
+            String mainName = name.getString("mainName");
 
+            String description = jsonObject.getString("description");
+            String imageString = jsonObject.getString("image");
+            String placeOfOriginString = jsonObject.getString("placeOfOrigin");
 
             JSONArray alsoKnownAsArray = name.getJSONArray("alsoKnownAs");
             List<String> alsoKnownAsStringList = new ArrayList<>();
             for (int i = 0; i < alsoKnownAsArray.length(); i++) {
                 alsoKnownAsStringList.add(alsoKnownAsArray.getString(i));
             }
-            sandwich.setAlsoKnownAs(alsoKnownAsStringList);
-
-
-            sandwich.setDescription(jsonObject.getString("description"));
-            sandwich.setImage(jsonObject.getString("image"));
 
             JSONArray ingredientsArray = jsonObject.getJSONArray("ingredients");
             List<String> ingredientsList = new ArrayList<>();
             for (int i = 0; i < ingredientsArray.length(); i++) {
                 ingredientsList.add(ingredientsArray.getString(i));
             }
-            sandwich.setIngredients(ingredientsList);
 
-            sandwich.setPlaceOfOrigin(jsonObject.getString("placeOfOrigin"));
-
-            return sandwich;
+            return new Sandwich(mainName, alsoKnownAsStringList, placeOfOriginString, description, imageString, ingredientsList);
 
         } catch (JSONException e) {
             e.printStackTrace();
